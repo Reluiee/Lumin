@@ -1,0 +1,455 @@
+
+/* =========================
+   VARIABLES
+========================= */
+
+:root {
+    --text-color: #f1eaf2;
+    --menu-background: rgba(15, 27, 38, 0.45);
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Josefin Slab", serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+
+    background: radial-gradient(
+        circle,
+        #80adbf 0%,
+        #0f1b26 100%
+    );
+
+    overflow: hidden;
+}
+
+/* =========================
+   CANVAS
+========================= */
+
+#canvas1 {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 0;
+    background: transparent;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 10;
+}
+
+/* =========================
+   BURGER BUTTON
+========================= */
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.2);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow: 3px 3px 12px rgba(100, 83, 94, 0.2);
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.menu-toggle span {
+    display: block;
+
+    width: 22px;
+    height: 2px;
+
+    background: var(--text-color);
+    border-radius: 2px;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+/* Burger zu X */
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =========================
+   SETTINGS MENU
+========================= */
+
+.settings-menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+
+    width: 280px;
+    max-width: calc(100vw - 48px);
+    max-height: calc(100dvh - 100px);
+
+    padding: 28px;
+    overflow-y: auto;
+
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    background: var(--menu-background);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+
+    color: var(--text-color);
+}
+
+.settings-menu[hidden] {
+    display: none;
+}
+
+/* Heading */
+
+.settings-menu h2 {
+    margin: 0 0 28px;
+
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Labels */
+
+.settings-menu label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 20px 0 10px;
+
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Slider Values */
+
+.settings-menu output {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    font-variant-numeric: tabular-nums;
+}
+
+/* =========================
+   SLIDERS
+========================= */
+
+.settings-menu input[type="range"] {
+    display: block;
+
+    width: 100%;
+    height: 6px;
+    margin: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    outline: none;
+
+    cursor: pointer;
+}
+
+/* Chrome, Safari, Edge */
+
+.settings-menu input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 16px;
+    height: 16px;
+
+    background: var(--text-color);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+    cursor: grab;
+    transition: transform 0.2s ease;
+}
+
+.settings-menu input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.settings-menu input[type="range"]::-webkit-slider-thumb:active {
+    cursor: grabbing;
+}
+
+/* Firefox */
+
+.settings-menu input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+
+    background: var(--text-color);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+
+    cursor: grab;
+}
+
+/* =========================
+   BACKGROUND OPTIONS
+========================= */
+
+.background-settings {
+    margin-top: 28px;
+}
+
+.settings-label {
+    margin: 0 0 16px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.background-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    gap: 20px 16px;
+}
+
+.background-option {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        var(--color-1) 0%,
+        var(--color-1) 48%,
+        var(--color-2) 52%,
+        var(--color-2) 100%
+    );
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.background-option:hover {
+    transform: scale(1.12);
+}
+
+.background-option.active {
+    outline: 2px solid var(--text-color);
+    outline-offset: 4px;
+}
+
+.background-option:focus-visible {
+    outline: 2px solid var(--text-color);
+    outline-offset: 4px;
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+.menu-toggle:focus-visible,
+.settings-menu input:focus-visible {
+    outline: 2px solid var(--text-color);
+    outline-offset: 4px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+    .nav {
+        top: 16px;
+        right: 16px;
+    }
+
+    .settings-menu {
+        width: 260px;
+        max-width: calc(100vw - 32px);
+        max-height: calc(100dvh - 88px);
+        padding: 22px;
+    }
+
+    .background-options {
+        gap: 18px 12px;
+    }
+}
+
+
+/* =========================
+   TOUCH SUPPORT
+========================= */
+
+#canvas1 {
+  pointer-events: none;
+  touch-action: auto;
+}
+
+.menu-toggle,
+.background-option,
+.settings-menu input[type="range"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .menu-toggle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .settings-menu {
+    max-height: calc(100dvh - 88px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .background-option {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+
+
+/* =========================
+   CONNECTIONS TOGGLE
+========================= */
+
+.connection-settings {
+  margin-top: 24px;
+}
+
+.connection-settings label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.connection-settings input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+
+  position: relative;
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 24px;
+  margin: 0;
+
+  border: 1px solid currentColor;
+  border-radius: 999px;
+
+  background: transparent;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.connection-settings input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+  background: var(--text-color);
+
+  transition: transform 0.2s ease;
+}
+
+.connection-settings input[type="checkbox"]:checked {
+  background: color-mix(
+    in srgb,
+    var(--text-color) 25%,
+    transparent
+  );
+}
+
+.connection-settings input[type="checkbox"]:checked::before {
+  transform: translateX(18px);
+}
+
+.connection-settings input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 4px;
+}
+
