@@ -392,6 +392,7 @@ body {
   margin-top: 24px;
 }
 
+
 .connection-settings label {
   display: flex;
   align-items: center;
@@ -412,7 +413,7 @@ body {
   height: 24px;
   margin: 0;
 
-  border: 1px solid currentColor;
+  border: 1px solid var(--text-color);
   border-radius: 999px;
 
   background: transparent;
