@@ -17,6 +17,7 @@ const settings = {
   particleSize: 5,
   particleSpeed: 1,
   particleColor: '#c4efff',
+  particleForce: 10,
   showConnections: false,
   connectionDistance: 110,
 };
@@ -204,8 +205,8 @@ class Particle {
         const angle = Math.atan2(dy, dx);
         const force = (radius - distance) / radius;
 
-        forceX = Math.cos(angle) * force * 10;
-        forceY = Math.sin(angle) * force * 10;
+        forceX = Math.cos(angle) * force * settings.particleForce;
+         forceY = Math.sin(angle) * force * settings.particleForce;
       }
     }
 
@@ -390,6 +391,17 @@ speedSlider.addEventListener('input', (event) => {
 
   speedValue.textContent = settings.particleSpeed;
 });
+
+
+// Repulsion Force
+const forceSlider = document.getElementById('particle-force');
+const forceValue = document.getElementById('particle-force-value');
+
+forceSlider.addEventListener('input', (event) => {
+  settings.particleForce = Number(event.target.value);
+  forceValue.textContent = settings.particleForce;
+});
+
 
 //Lines
 const connectionsToggle = document.getElementById('particle-connections');
