@@ -37,6 +37,18 @@ body {
 
     overflow: hidden;
 }
+/*------*/
+body {
+  touch-action: none;
+}
+
+.settings-menu {
+  touch-action: pan-y;
+}
+
+.settings-menu input[type="range"] {
+  touch-action: pan-x;
+}
 
 /* =========================
    CANVAS
