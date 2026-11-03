@@ -393,12 +393,11 @@ speedSlider.addEventListener('input', (event) => {
 });
 
 
-
+// Repulsion Force
 const forceSlider = document.getElementById('particle-force');
 const forceValue = document.getElementById('particle-force-value');
 
 forceSlider.addEventListener('input', (event) => {
-  console.log('Force:', event.target.value);
 
   settings.particleForce = Number(event.target.value);
   forceValue.textContent = settings.particleForce;
